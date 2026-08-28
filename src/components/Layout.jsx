@@ -41,9 +41,9 @@ export default function Layout({ children }) {
           {/* Brand */}
           <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
             <img
-              src="/logo/vectors/EUROZAK_Logo_Exact_Gold_Transparent.svg"
+              src="/logo/vectors/EUROZAK_Logo_Exact_Blue_Transparent.svg"
               alt="Eurozak Logo"
-              style={{ height: 34, width: 'auto' }}
+              style={{ height: 'clamp(24px, 5vw, 34px)', width: 'auto' }}
               onError={e => { e.target.src = '/logo/logo-gold.png'; }}
             />
           </Link>
@@ -62,6 +62,7 @@ export default function Layout({ children }) {
                     color: active ? 'var(--color-secondary)' : 'var(--color-on-surface-variant)',
                     borderBottom: active ? '2px solid var(--color-secondary)' : '2px solid transparent',
                     paddingBottom: 4,
+                    letterSpacing: '0.02em',
                     transition: 'color 0.2s, border-color 0.2s',
                   }}
                   onMouseEnter={e => { if (!active) e.target.style.color = 'var(--color-on-surface)'; }}
@@ -92,6 +93,7 @@ export default function Layout({ children }) {
               href="https://wa.me/919744978000"
               target="_blank"
               rel="noreferrer"
+              className="desktop-enquire"
               style={{
                 display: 'flex', alignItems: 'center', gap: 8,
                 color: 'var(--color-secondary)',
@@ -195,7 +197,7 @@ export default function Layout({ children }) {
             {/* Brand */}
             <div style={{ gridColumn: 'span 1' }}>
               <img
-                src="/logo/vectors/EUROZAK_Logo_Exact_Gold_Transparent.svg"
+                src="/logo/vectors/EUROZAK_Logo_Exact_Blue_Transparent.svg"
                 alt="Eurozak"
                 style={{ height: 44, marginBottom: 20, filter: 'brightness(0) invert(1)' }}
                 onError={e => { e.target.src = '/logo/logo-white.png'; e.target.style.filter = 'none'; }}
@@ -337,7 +339,7 @@ export default function Layout({ children }) {
 
       <style>{`
         @media (max-width: 900px) {
-          .desktop-nav { display: none !important; }
+          .desktop-nav, .desktop-enquire { display: none !important; }
         }
         @media (min-width: 901px) {
           .hamburger-btn { display: none !important; }
