@@ -6,21 +6,21 @@ import { PRODUCTS } from '../data/products';
 
 const FILTERS = [
   { label: 'All',         tag: 'All' },
-  { label: 'Wood Finish', tag: 'Wood Finish' },
-  { label: 'Matte Black', tag: 'Matte Black' },
-  { label: 'Illuminated', tag: 'Illuminated' },
+  { label: 'One Piece',   tag: 'One Piece' },
+  { label: 'Wall Hung',   tag: 'Wall Hung' },
+  { label: 'S-Trap',      tag: 'S-Trap' },
 ];
 
-export default function BathroomCabinet() {
+export default function Sanitaryware() {
   const [filter, setFilter] = useState('All');
   const [sort, setSort]     = useState('Newest Arrivals');
-  const [products, setProducts] = useState(PRODUCTS.filter(p => p.category === 'vanity'));
+  const [products, setProducts] = useState(PRODUCTS.filter(p => p.category === 'sanitaryware'));
   const navigate = useNavigate();
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   useEffect(() => {
-    let res = PRODUCTS.filter(p => p.category === 'vanity');
+    let res = PRODUCTS.filter(p => p.category === 'sanitaryware');
     if (filter !== 'All') res = res.filter(p => p.tags.includes(filter));
     if (sort === 'Newest Arrivals')  res.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
     if (sort === 'Model Code (A-Z)') res.sort((a, b) => a.code.localeCompare(b.code));
@@ -31,58 +31,53 @@ export default function BathroomCabinet() {
     <PageTransition style={{ background: 'var(--color-surface)' }}>
 
       {/* ══════════════════════════════════════════════════════
-          HERO
+          HERO (FEATURES LAYOUT)
       ══════════════════════════════════════════════════════ */}
-      <section style={{
-        position: 'relative', minHeight: '72vh',
-        display: 'flex', alignItems: 'flex-end',
-        overflow: 'hidden', background: '#0d1b3e',
-      }}>
-        {/* Static fallback */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: "url('/products/WhatsApp Image 2026-08-27 at 1.48.54 PM.jpeg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center top',
-          filter: 'brightness(0.4)',
-        }} />
-        {/* Video */}
-        <video autoPlay muted loop playsInline style={{
-          position: 'absolute', inset: 0,
-          width: '100%', height: '100%',
-          objectFit: 'cover', objectPosition: 'center top',
-          opacity: 1,
+      <section style={{ background: 'var(--color-surface-container)', paddingTop: 120, paddingBottom: 64 }}>
+        <div className="container-max" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: 56, alignItems: 'center',
         }}>
-          <source src="/videos/Man_touching_luxury_bathroom_vanity_202608271552.mp4" type="video/mp4" />
-        </video>
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(29,54,127,0.95) 0%, rgba(29,54,127,0.5) 50%, rgba(0,0,0,0.15) 100%)',
-        }} />
-
-        <div className="container-max" style={{ position: 'relative', zIndex: 1, paddingTop: 120, paddingBottom: 64 }}>
-          <span className="text-label-lg" style={{ color: 'var(--color-secondary-fixed-dim)', display: 'block', marginBottom: 14 }}>
-            — Premium Vanity Collection
-          </span>
-          <h1 className="text-display" style={{ color: '#fff', marginBottom: 16, maxWidth: 620 }}>
-            Cabinet & Wash<br/>
-            <em style={{ fontWeight: 300, opacity: 0.9 }}>Basin Solutions</em>
-          </h1>
-          <p className="text-body-lg" style={{ color: 'rgba(255,255,255,0.72)', maxWidth: 480, marginBottom: 40 }}>
-            A perfect blend of modern aesthetics and practical storage — crafted for warmth, durability, and elegance.
-          </p>
-          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-            {[
-              { icon: 'diamond',   text: 'Premium Design' },
-              { icon: 'verified',  text: '5-Year Warranty' },
-              { icon: 'water_drop', text: '100% Waterproof' },
-              { icon: 'bug_report', text: 'Termite Proof' },
-            ].map(p => (
-              <div key={p.text} style={{ display: 'flex', gap: 8, alignItems: 'center', color: 'var(--color-on-primary-container)' }}>
-                <span className="material-symbols-outlined" style={{ fontSize: 18, color: 'var(--color-secondary-fixed-dim)' }}>{p.icon}</span>
-                <span className="text-label-sm">{p.text}</span>
-              </div>
-            ))}
+          <div>
+            <span className="text-label-sm" style={{ color: 'var(--color-secondary)', display: 'block', marginBottom: 16 }}>— European Porcelain</span>
+            <h1 className="text-display" style={{ color: 'var(--color-on-surface)', marginBottom: 20, fontSize: 'clamp(32px, 4vw, 56px)', wordBreak: 'keep-all', whiteSpace: 'nowrap' }}>
+              Premium<br/>
+              <em style={{ fontWeight: 300, color: 'var(--color-primary)' }}>Sanitaryware</em>
+            </h1>
+            <p className="text-body-lg" style={{ color: 'var(--color-on-surface-variant)', lineHeight: 1.8, marginBottom: 28, maxWidth: 480 }}>
+              Advanced siphonic technology and seamless designs for the modern sanctuary. Cast from high-grade ceramic for lasting purity.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                { icon: 'diamond',   text: 'Premium Glaze' },
+                { icon: 'verified',  text: '10-Year Warranty' },
+                { icon: 'water_drop', text: 'Siphonic Flush' },
+                { icon: 'chair', text: 'Soft-Close Seat' },
+              ].map(item => (
+                <div key={item.icon} style={{
+                  display: 'flex', alignItems: 'center', gap: 14,
+                  padding: '14px 16px',
+                  background: 'var(--color-surface)',
+                  border: '1px solid var(--color-outline-variant)',
+                  maxWidth: 380,
+                }}>
+                  <span className="material-symbols-outlined" style={{ color: 'var(--color-tertiary)', fontSize: 22 }}>{item.icon}</span>
+                  <span className="text-label-lg" style={{ color: 'var(--color-on-surface)' }}>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{ position: 'relative' }}>
+            <img src="/products/WhatsApp Image 2026-08-27 at 1.55.19 PM (3).jpeg"
+              alt="Premium Ceramic Quality"
+              style={{
+                width: '100%', height: 460,
+                objectFit: 'cover', objectPosition: 'center',
+                display: 'block',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+              }}
+            />
           </div>
         </div>
       </section>
@@ -258,52 +253,7 @@ export default function BathroomCabinet() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          QUALITY FEATURE
-      ══════════════════════════════════════════════════════ */}
-      <section className="section-gap" style={{ background: 'var(--color-surface-container)' }}>
-        <div className="container-max" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: 56, alignItems: 'center',
-        }}>
-          <div>
-            <span className="text-label-sm" style={{ color: 'var(--color-secondary)', display: 'block', marginBottom: 16 }}>— Materials & Build</span>
-            <h2 className="text-headline-lg" style={{ color: 'var(--color-on-surface)', marginBottom: 20 }}>Engineered for Longevity</h2>
-            <p className="text-body-lg" style={{ color: 'var(--color-on-surface-variant)', lineHeight: 1.8, marginBottom: 28 }}>
-              Our PVC multiwood body ensures absolute water resistance and structural integrity — superior density to traditional MDF for a lifetime of reliable use.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {[
-                { icon: 'water_drop',   text: '100% Water Resistant' },
-                { icon: 'bug_report',   text: 'Termite Proof Construction' },
-                { icon: 'verified',     text: '5 Year Structural Warranty' },
-              ].map(item => (
-                <div key={item.icon} style={{
-                  display: 'flex', alignItems: 'center', gap: 14,
-                  padding: '14px 16px',
-                  background: 'var(--color-surface)',
-                  border: '1px solid var(--color-outline-variant)',
-                }}>
-                  <span className="material-symbols-outlined" style={{ color: 'var(--color-tertiary)', fontSize: 22 }}>{item.icon}</span>
-                  <span className="text-label-lg" style={{ color: 'var(--color-on-surface)' }}>{item.text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ position: 'relative' }}>
-            <img src="/products/WhatsApp Image 2026-08-27 at 1.48.54 PM (3).jpeg"
-              alt="Cabinet Interior Quality"
-              style={{
-                width: '100%', height: 460,
-                objectFit: 'cover', objectPosition: 'center',
-                display: 'block',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
-              }}
-            />
-          </div>
-        </div>
-      </section>
+
 
       {/* ══════════════════════════════════════════════════════
           ENQUIRY CTA

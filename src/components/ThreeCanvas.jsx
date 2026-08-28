@@ -79,7 +79,7 @@ export default function ThreeCanvas() {
     faucetBody.position.set(0, 0.28, -0.3);
     faucetBody.castShadow = true;
     group.add(faucetBody);
-    
+
     const faucetSpout = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.25, 16), goldMat);
     faucetSpout.rotation.x = Math.PI / 2;
     faucetSpout.position.set(0, 0.45, -0.18);
@@ -104,12 +104,12 @@ export default function ThreeCanvas() {
     const handle2 = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.02, 0.04), goldMat);
     handle2.position.set(0.58, -0.3, 0.64);
     group.add(handle2);
-    
+
     // Bottom drawer (full width)
     const drawer3 = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.5, 0.05), woodMat);
     drawer3.position.set(0, -0.85, 0.61);
     group.add(drawer3);
-    
+
     const handle3 = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.02, 0.04), goldMat);
     handle3.position.set(0, -0.85, 0.64);
     group.add(handle3);
@@ -117,7 +117,7 @@ export default function ThreeCanvas() {
     // 7. LED Smart Mirror (Round)
     const mirrorGroup = new THREE.Group();
     mirrorGroup.position.set(0, 1.6, -0.4);
-    
+
     const mirrorGlass = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 0.05, 64), mirrorGlassMat);
     mirrorGlass.rotation.x = Math.PI / 2;
     mirrorGroup.add(mirrorGlass);
@@ -145,35 +145,35 @@ export default function ThreeCanvas() {
     let targetY = 0;
 
     const handleMouseMove = (e) => {
-        // Normalize mouse coordinates (-1 to +1)
-        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+      // Normalize mouse coordinates (-1 to +1)
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
     };
     window.addEventListener('mousemove', handleMouseMove);
 
     // --- ANIMATION ---
     let animationFrameId;
     function animate() {
-        animationFrameId = requestAnimationFrame(animate);
-        
-        // Smooth rotation easing
-        targetX = mouseX * 0.25;
-        targetY = mouseY * 0.1;
-        
-        group.rotation.y += (targetX - group.rotation.y) * 0.05;
-        group.rotation.x += (targetY - group.rotation.x) * 0.05;
-        
-        renderer.render(scene, camera);
+      animationFrameId = requestAnimationFrame(animate);
+
+      // Smooth rotation easing
+      targetX = mouseX * 0.25;
+      targetY = mouseY * 0.1;
+
+      group.rotation.y += (targetX - group.rotation.y) * 0.05;
+      group.rotation.x += (targetY - group.rotation.x) * 0.05;
+
+      renderer.render(scene, camera);
     }
     animate();
 
     // --- RESIZE ---
     const handleResize = () => {
-        const w = container.clientWidth || window.innerWidth;
-        const h = container.clientHeight || window.innerHeight;
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h);
+      const w = container.clientWidth || window.innerWidth;
+      const h = container.clientHeight || window.innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
     };
     window.addEventListener('resize', handleResize);
 

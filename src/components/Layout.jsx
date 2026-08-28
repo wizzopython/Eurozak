@@ -5,7 +5,7 @@ const NAV_LINKS = [
   { name: 'Home',          path: '/' },
   { name: 'Bathroom',      path: '/bathroom' },
   { name: 'Home Décor',    path: '/home-decor' },
-  { name: 'Sanitaryware',  path: '/product/ez-6633' },
+  { name: 'Sanitaryware',  path: '/sanitaryware' },
 ];
 
 export default function Layout({ children }) {

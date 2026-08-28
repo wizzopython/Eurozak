@@ -8,7 +8,6 @@ const MARQUEE_ITEMS = [
   { img: '/products/WhatsApp Image 2026-08-27 at 1.48.54 PM (1).jpeg', label: 'Premium Vanity' },
   { img: '/products/WhatsApp Image 2026-08-27 at 1.55.20 PM.jpeg',     label: 'Smart Living' },
   { img: '/products/WhatsApp Image 2026-08-27 at 1.55.19 PM (1).jpeg', label: 'Wash Basin' },
-  { img: '/products/WhatsApp Image 2026-08-27 at 2.03.20 PM.jpeg',     label: 'Home Décor' },
 ];
 
 const FEATURED = [
@@ -81,8 +80,8 @@ export default function Home() {
           style={{
             position: 'absolute', inset: 0,
             width: '100%', height: '100%',
-            objectFit: 'cover', objectPosition: 'center',
-            opacity: 0.7,
+            objectFit: 'cover', objectPosition: 'center top',
+            opacity: 1, /* Changed from 0.7 so fallback text doesn't bleed through */
           }}
         >
           <source src="/videos/Man_opening_bathroom_vanity_cabinet_202608271747.mp4" type="video/mp4" />
@@ -101,15 +100,14 @@ export default function Home() {
           width: '100%', paddingBottom: 80, paddingTop: 60,
         }}>
           {/* Eyebrow */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24 }}>
-            <div style={{ width: 44, height: 1.5, background: 'var(--color-secondary)' }} />
-            <span className="text-label-lg" style={{ color: 'var(--color-secondary-fixed-dim)', letterSpacing: '0.2em' }}>
+          <div style={{ marginBottom: 20 }}>
+            <span className="text-label-lg" style={{ color: 'var(--color-secondary-fixed-dim)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
               European Cabinet Systems
             </span>
           </div>
 
-          <h1 className="text-display" style={{ color: '#fff', marginBottom: 22, maxWidth: 680 }}>
-            Precision in Every<br />
+          <h1 className="text-display" style={{ color: '#fff', marginBottom: 22, maxWidth: 680, display: 'flex', flexDirection: 'column' }}>
+            <span>Precision in Every</span>
             <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'rgba(255,255,255,0.88)' }}>Living Space.</em>
           </h1>
 
