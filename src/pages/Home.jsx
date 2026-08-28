@@ -58,11 +58,11 @@ export default function Home() {
         position: 'relative',
         width: '100%',
         height: '100dvh',
-        minHeight: 600,
+        minHeight: '100dvh',
         overflow: 'hidden',
         background: '#0d1b3e',
         display: 'flex',
-        alignItems: 'flex-end',
+        flexDirection: 'column',
       }}>
         {/* Static fallback background image (always visible) */}
         <div style={{
@@ -97,7 +97,9 @@ export default function Home() {
         {/* Hero Content */}
         <div className="container-max" style={{
           position: 'relative', zIndex: 10,
-          width: '100%', paddingBottom: 80, paddingTop: 60,
+          width: '100%', paddingBottom: 80, paddingTop: 140,
+          marginTop: 'auto',
+          display: 'flex', flexDirection: 'column', gap: 32,
         }}>
           {/* Eyebrow */}
           <div style={{ marginBottom: 20 }}>
